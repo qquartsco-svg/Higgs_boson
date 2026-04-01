@@ -261,7 +261,7 @@ python3 scripts/verify_signature.py
 python3 scripts/release_check.py
 ```
 
-Current baseline: `14 passed`.
+Current baseline: `23 passed`.
 
 ## Blockchain signature
 

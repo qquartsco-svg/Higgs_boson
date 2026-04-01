@@ -268,7 +268,7 @@ python3 scripts/verify_signature.py
 python3 scripts/release_check.py
 ```
 
-현재 기준선은 `14 passed` 입니다.
+현재 기준선은 `23 passed` 입니다.
 
 ## 블록체인 서명
 
