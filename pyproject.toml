@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "higgs-phenomenology-foundation"
+version = "0.3.0"
+description = "Educational foundation layer: Higgs field & boson, EWSB, mass origins, discovery context, claim screening (not MC or experiment replacement)."
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["higgs_phenomenology*"]
