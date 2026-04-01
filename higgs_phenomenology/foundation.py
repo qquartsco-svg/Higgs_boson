@@ -27,7 +27,9 @@ def assess_higgs_foundation(
     optional L5 roadmap strings; claim screen (L4) when payload provided.
     """
     layers = layer1_field_and_symmetry_axes() + mass_generation_axes()
-    base = 0.75 + 0.05 * min(len(layers), 16) * 0.01
+    # Base omega: fixed 0.75 for structural completeness; tiny layer-count nudge is intentional.
+    # L4 claim payload can pull it down significantly via the 0.65/0.35 blend below.
+    base = 0.75 + 0.01 * min(len(layers), 10)
     omega = min(1.0, base)
 
     tags = [c.name for c in layers]

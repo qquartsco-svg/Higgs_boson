@@ -88,6 +88,10 @@
 
 즉 이 저장소는 **precision collider tool**이 아니라 **foundation/screening layer**입니다.
 
+## 단독 클론 사용자에게
+
+이 저장소는 단독으로도 작동합니다. 다만 `00_BRAIN` 우산 구조 안에서 읽을 때 더 자연스러운 sibling references가 일부 문서에 등장할 수 있습니다. 공개 저장소만 단독 클론한 경우, 그런 로컬 경로 참조는 없거나 생략될 수 있습니다.
+
 ## 레이어 구조
 
 | Layer | 역할 | 모듈 |
@@ -147,6 +151,7 @@
 
 - 왜 힉스가 “발견됐다”고 말하는지
 - 어떤 collider 문맥에서 확인되는지
+- 특히 “발견”이란 단어가 단순 직관이 아니라, 특정 생산/붕괴 채널에서의 excess와 collider 통계 문맥 안에서 쓰인다는 점을 정리
 
 ### `open_questions.py`
 
@@ -173,6 +178,7 @@
   - `v ≈ 246 GeV`
 - 트리 수준 Yukawa 질량:
   - `m_f = y_f v / sqrt(2)`
+  - 여기서 `y_f` 는 **무차원 Yukawa coupling**, 출력 질량은 **GeV** 단위입니다.
 - 트리 수준 힉스 질량 관계:
   - `m_H^2 = 2 lambda v^2`
 
@@ -205,10 +211,21 @@
 
 즉 이 엔진은 “힉스를 정의한다”기보다, **어떤 설명이 어떤 층위를 놓치고 있는지**를 요약합니다.
 
+현재 foundation 출력은 **단일 `omega_foundation_0_1` + 설명 필드** 중심입니다. 즉 이 엔진은 아직 `field_score`, `mass_structure_score`, `phenomenology_score`, `claim_consistency_score` 같은 하위 점수를 분리해서 내지는 않습니다. 대신 `evidence_tags`, `key_risk`, `recommendation`으로 왜 그런 판정이 나왔는지를 남깁니다.
+
+자연스러운 다음 확장 방향은 이 단일 `omega`를 유지하되, 그 아래에
+
+- `field_symmetry_score`
+- `mass_structure_score`
+- `boson_phenomenology_score`
+- `claim_consistency_score`
+
+같은 하위 점수를 추가하는 것입니다.
+
 ## 빠른 시작
 
 ```bash
-cd /Users/jazzin/Desktop/00_BRAIN/_staging/Higgs_Phenomenology_Foundation
+cd Higgs_Phenomenology_Foundation   # 또는 클론한 디렉토리 경로
 python3 -m pip install -e ".[dev]"
 python3 -m pytest tests/ -q
 python3 scripts/verify_package_identity.py
@@ -309,10 +326,6 @@ python3 scripts/generate_signature.py
 - 표준모형을 넘는 주장에 대해 보수적으로만 태그를 남김
 
 즉 **“힉스에 대한 생각의 구조를 정리하는 엔진”이지, 힉스 physics 전부를 계산하는 엔진은 아닙니다.**
-
-## 단독 클론 사용자에게
-
-이 저장소는 단독으로도 작동합니다. 다만 `00_BRAIN` 우산 구조 안에서 읽을 때 더 자연스러운 sibling references가 일부 문서에 등장할 수 있습니다. 공개 저장소만 단독 클론한 경우, 그런 로컬 경로 참조는 없거나 생략될 수 있습니다.
 
 ## 저장소 파일
 

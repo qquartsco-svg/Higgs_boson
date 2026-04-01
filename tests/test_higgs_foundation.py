@@ -1,5 +1,6 @@
 from higgs_phenomenology import (
     AthenaVerdict,
+    HIGGS_BOSON_MASS_GEV,
     assess_higgs_foundation,
     bridge_notes_for_sibling_engines,
     default_symmetry_breaking_context,
@@ -52,11 +53,14 @@ def test_yukawa_roundtrip_electron():
 def test_lambda_mass_tree_roundtrip():
     lam = lambda_from_higgs_mass_tree()
     mh = higgs_mass_gev_tree_from_lambda(lambda_=lam)
-    assert abs(mh - 125.1) < 0.05
+    assert abs(mh - HIGGS_BOSON_MASS_GEV) < 0.05
 
 
 def test_boson_channels():
-    assert any(p.channel == "ggF" for p in higgs_production_channels())
+    prod = higgs_production_channels()
+    channels = {p.channel for p in prod}
+    assert "ggF" in channels
+    assert "ttH" in channels, "ttH must be a separate production channel (not buried inside VH)"
     assert any(d.channel == "h_to_gammagamma" for d in higgs_decay_channels())
 
 
@@ -92,3 +96,29 @@ def test_foundation_assess_with_layers():
     rep = assess_higgs_foundation(include_extension_roadmap_tags=True)
     assert 0.0 <= rep.omega_foundation_0_1 <= 1.0
     assert any("production" in t or "decay" in t for t in rep.evidence_tags)
+
+
+def test_screen_default_payload_positive():
+    """All-False payload should return POSITIVE — no red flags."""
+    r = screen_higgs_claim(HiggsClaimPayload())
+    assert r.athena_verdict == AthenaVerdict.POSITIVE.value
+    assert r.tier == HiggsClaimTier.CONSISTENT_WITH_SM_PEDAGOGY.value
+
+
+def test_screen_all_mass_needs_nuance():
+    """'Higgs gives all mass' is wrong but not physics-law-violating — NEEDS_NUANCE tier."""
+    r = screen_higgs_claim(HiggsClaimPayload(says_higgs_gives_all_mass=True))
+    assert r.tier == HiggsClaimTier.NEEDS_NUANCE.value
+    assert "mass_origin_oversimplified" in r.flags
+
+
+def test_screen_sm_final_cautious():
+    """'SM is absolutely final' overstates — should be CAUTIOUS."""
+    r = screen_higgs_claim(HiggsClaimPayload(frames_standard_model_as_absolutely_final=True))
+    assert r.athena_verdict == AthenaVerdict.CAUTIOUS.value
+
+
+def test_screen_aether_analogy_penalised():
+    r = screen_higgs_claim(HiggsClaimPayload(equates_higgs_field_with_luminiferous_aether=True))
+    assert "bad_analogy" in r.flags
+    assert r.omega_structure_0_1 < 1.0

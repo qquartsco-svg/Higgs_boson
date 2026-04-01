@@ -5,6 +5,7 @@ This module exists to stop the common myth: **most of visible mass is NOT Higgs 
 """
 from __future__ import annotations
 
+import math
 from typing import List
 
 from .constants import VEV_GEV
@@ -50,6 +51,4 @@ def yukawa_coupling_order_of_magnitude(*, fermion_mass_gev: float, vev_gev: floa
     """SM order-of-magnitude Yukawa y ~ sqrt(2) m / v (single Higgs doublet, tree-level intuition)."""
     if vev_gev <= 0.0 or fermion_mass_gev < 0.0:
         return 0.0
-    from math import sqrt
-
-    return sqrt(2.0) * fermion_mass_gev / vev_gev
+    return math.sqrt(2.0) * fermion_mass_gev / vev_gev

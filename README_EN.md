@@ -84,6 +84,10 @@ This package does not:
 
 It is a **foundation/screening layer**, not a precision collider stack.
 
+## For standalone clone users
+
+This repository works on its own. Some documentation may mention sibling-engine intent from the larger `00_BRAIN` workspace; standalone public clones may not contain those local sibling paths.
+
 ## Layer structure
 
 | Layer | Role | Modules |
@@ -142,6 +146,7 @@ See [docs/LAYER_STACK_EN.md](docs/LAYER_STACK_EN.md) for the compact layer map.
 ### `discovery_context.py`
 
 - how the Higgs is spoken about in collider discovery language
+- in particular, that “discovery” means channel-specific excess plus collider statistical confirmation context, not a vague pop-science proclamation
 
 ### `open_questions.py`
 
@@ -168,6 +173,7 @@ This engine uses formulas as **structural scaffolding**, not as a full precision
   - `v ≈ 246 GeV`
 - tree-level Yukawa mass:
   - `m_f = y_f v / sqrt(2)`
+  - here `y_f` is a **dimensionless Yukawa coupling** and the returned mass is in **GeV**
 - tree-level Higgs mass relation:
   - `m_H^2 = 2 lambda v^2`
 
@@ -200,10 +206,19 @@ This is not a truth oracle. It is a **screening language for explanation quality
 
 So the engine does not merely define the Higgs. It reports **which conceptual layers are present or missing** in a given explanation.
 
+At the moment, the foundation output is centered on a **single `omega_foundation_0_1` plus explanation fields**. It does not yet expose separate scores such as `field_score`, `mass_structure_score`, `phenomenology_score`, or `claim_consistency_score`. For now, the repository explains the verdict through `evidence_tags`, `key_risk`, and `recommendation`.
+
+A natural next extension would keep the single top-level `omega` while adding optional subscores such as:
+
+- `field_symmetry_score`
+- `mass_structure_score`
+- `boson_phenomenology_score`
+- `claim_consistency_score`
+
 ## Quickstart
 
 ```bash
-cd /Users/jazzin/Desktop/00_BRAIN/_staging/Higgs_Phenomenology_Foundation
+cd Higgs_Phenomenology_Foundation   # or path to your cloned directory
 python3 -m pip install -e ".[dev]"
 python3 -m pytest tests/ -q
 python3 scripts/verify_package_identity.py
@@ -299,10 +314,6 @@ This engine is intentionally conservative.
 - no authority claims beyond educational screening
 
 It is an engine for **structuring Higgs understanding**, not for computing all Higgs physics.
-
-## For standalone clone users
-
-This repository works on its own. Some documentation may mention sibling-engine intent from the larger `00_BRAIN` workspace; standalone public clones may not contain those local sibling paths.
 
 ## Repository files
 

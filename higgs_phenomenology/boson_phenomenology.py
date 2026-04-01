@@ -21,7 +21,12 @@ def higgs_production_channels() -> List[HiggsProcessFact]:
         HiggsProcessFact(
             category="production",
             channel="VH",
-            statement="Associated production with weak bosons (WH, ZH) or top (ttH).",
+            statement="Associated production with weak bosons (WH, ZH).",
+        ),
+        HiggsProcessFact(
+            category="production",
+            channel="ttH",
+            statement="Associated production with a top-quark pair; probes top-Yukawa coupling directly.",
         ),
     ]
 

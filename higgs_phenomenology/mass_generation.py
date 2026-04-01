@@ -3,11 +3,11 @@ from __future__ import annotations
 
 from typing import List
 
-from .contracts import MassContribution, SymmetryBreakingContext
+from .contracts import ConceptLayer, MassContribution, SymmetryBreakingContext
 from .mass_and_couplings import mass_origin_axes
 
 
-def mass_generation_axes():
+def mass_generation_axes() -> List[ConceptLayer]:
     """Same physics as mass_origin_axes; name aligned with Layer-2 stack docs."""
     return mass_origin_axes()
 
