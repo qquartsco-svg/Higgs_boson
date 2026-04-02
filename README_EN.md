@@ -2,7 +2,7 @@
 
 # Higgs_Phenomenology_Foundation v0.3.0
 
-**`Higgs_Phenomenology_Foundation` is a conservative foundation layer for answering “what is the Higgs?” through field theory, electroweak symmetry breaking, mass structure, boson phenomenology, and claim screening.**
+**`Higgs_Phenomenology_Foundation` is a conservative foundation layer for exploring “what is the Higgs?” through field theory, electroweak symmetry breaking, mass structure, boson phenomenology, and claim screening.**
 
 This package does not treat the Higgs as a lone marble-like particle. Its core object is the combined structure of
 
